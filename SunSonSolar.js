@@ -4,7 +4,7 @@ event.preventDefault();
 
 const fname = document.getElementById("fname").value;
 const lname = document.getElementById("lname").value;
-const Mname = document.getElementById("mname").value;
+const mname = document.getElementById("mname").value;
 const email = document.getElementById("email").value;
 const uname = document.getElementById("uname").value;
 const password = document.getElementById("password").value;
