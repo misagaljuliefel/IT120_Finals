@@ -12,7 +12,18 @@
         <div class="logo">Sun Son <span>Solar</span></div>
         <nav class="nav-links">
             <a href="dashboard.html">Dashboard</a>
-            <div id="userMenu"></div>
+            <div id="userMenu">
+                <div class="dropdown">
+                    <button class="dropdown-btn">My Account</button>
+                    <div class="dropdown-menu">
+                        <a href="dashboard.html">Dashboard</a>
+                        <a href="timein.html">Time In</a>
+                        <a href="account.html">Account Settings</a>
+                        <a href="admin.html">Admin Panel</a>
+                        <a href="SunSonSolarLanding.html">Log Out</a>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -22,7 +33,9 @@
 
         <p class="timein-name" id="userName"></p>
 
-        <button class="timein-btn" id="timeInBtn">TIME IN</button>
+        <form action="dashboard.html">
+            <button type="submit" class="timein-btn" id="timeInBtn">TIME IN</button>
+        </form>
 
         <div class="timein-result" id="result">
             <p><strong>Name:</strong> <span id="rName"></span></p>

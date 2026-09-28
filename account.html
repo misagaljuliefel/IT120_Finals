@@ -12,7 +12,18 @@
         <div class="logo">Sun Son <span>Solar</span></div>
         <nav class="nav-links">
             <a href="dashboard.html">Dashboard</a>
-            <div id="userMenu"></div>
+            <div id="userMenu">
+                <div class="dropdown">
+                    <button class="dropdown-btn">My Account</button>
+                    <div class="dropdown-menu">
+                        <a href="dashboard.html">Dashboard</a>
+                        <a href="timein.html">Time In</a>
+                        <a href="account.html">Account Settings</a>
+                        <a href="admin.html">Admin Panel</a>
+                        <a href="SunSonSolarLanding.html">Log Out</a>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -20,7 +31,7 @@
         <h1>Sun Son Solar</h1>
         <h2>Account Settings</h2>
 
-        <form id="acctForm">
+        <form id="acctForm" action="dashboard.html">
             <label for="fname">First Name:</label>
             <input type="text" id="fname" required/>
 
