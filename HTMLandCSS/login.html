@@ -28,5 +28,21 @@
         </p>
     </div>
 
+    <script src="SunSonSolarData.js"></script>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const uname = document.getElementById("uname").value.trim();
+            const password = document.getElementById("password").value;
+
+            if (!loginAccount(uname, password)) {
+                alert("Incorrect username or password.");
+                return;
+            }
+
+            window.location.href = "SunSonSolarLanding.html";
+        });
+    </script>
 </body>
 </html>

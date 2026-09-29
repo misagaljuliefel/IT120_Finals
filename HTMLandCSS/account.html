@@ -60,5 +60,57 @@
         </form>
     </div>
 
+    <script src="SunSonSolarData.js"></script>
+    <script>
+        let user = requireLogin();
+        wireUserMenu();
+
+        if (user) {
+            document.getElementById("fname").value = user.fname || "";
+            document.getElementById("lname").value = user.lname || "";
+            document.getElementById("email").value = user.email || "";
+            document.getElementById("phone").value = user.phone || "";
+            document.getElementById("address").value = user.address || "";
+            document.getElementById("uname").value = user.uname || "";
+        }
+
+        document.getElementById("acctForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const password = document.getElementById("password").value;
+            const cpassword = document.getElementById("cpassword").value;
+
+            if (password !== "" && password.length < 8) {
+                alert("New password must be at least 8 characters long.");
+                return;
+            }
+            if (password !== cpassword) {
+                alert("New passwords do not match.");
+                return;
+            }
+
+            const newUname = document.getElementById("uname").value.trim();
+            if (newUname.toLowerCase() !== user.uname.toLowerCase() && findAccount(newUname)) {
+                alert("That username is already taken.");
+                return;
+            }
+
+            const updates = {
+                fname: document.getElementById("fname").value.trim(),
+                lname: document.getElementById("lname").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                phone: document.getElementById("phone").value.trim(),
+                address: document.getElementById("address").value.trim(),
+                uname: newUname
+            };
+            if (password !== "") {
+                updates.password = password;
+            }
+
+            updateAccount(user.uname, updates);
+            alert("Your account has been updated.");
+            window.location.href = "dashboard.html";
+        });
+    </script>
 </body>
 </html>

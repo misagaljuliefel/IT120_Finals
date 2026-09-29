@@ -52,5 +52,27 @@
     </div>
 
 
+    <script src="SunSonSolarData.js"></script>
+    <script>
+        requireRole(["admin"]);
+        wireUserMenu();
+
+        const accounts = getAccounts();
+        let usersHtml = "";
+        for (let i = 0; i < accounts.length; i++) {
+            const a = accounts[i];
+            usersHtml += "<tr><td>" + a.fname + " " + a.lname + "</td><td>" + a.uname + "</td><td>" +
+                a.role + "</td><td>" + (a.department || "-") + "</td><td>" + (a.email || "-") + "</td></tr>";
+        }
+        document.getElementById("usersBody").innerHTML = usersHtml;
+
+        const logs = getTimeLogs();
+        let logsHtml = "";
+        for (let i = 0; i < logs.length; i++) {
+            const l = logs[i];
+            logsHtml += "<tr><td>" + l.name + "</td><td>" + l.time + "</td><td>" + l.lat + ", " + l.lng + "</td></tr>";
+        }
+        document.getElementById("logsBody").innerHTML = logsHtml || '<tr><td colspan="3">No time-in records yet.</td></tr>';
+    </script>
 </body>
 </html>
