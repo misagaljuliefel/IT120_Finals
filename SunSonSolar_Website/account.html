@@ -9,7 +9,9 @@
 <body>
 
     <header class="navbar">
-        <div class="logo">Sun Son <span>Solar</span></div>
+        <div class="logo" onclick="window.location.href='SunSonSolarLanding.html'">
+            Sun Son <span>Solar</span>
+        </div>
         <nav class="nav-links">
             <a href="dashboard.html">Dashboard</a>
             <div id="userMenu">
@@ -38,14 +40,26 @@
             <label for="lname">Last Name:</label>
             <input type="text" id="lname" required/>
 
+            <label for="mname">Middle Name:</label>
+            <input type="text" id="mname" />
+
+            <label for="bdate">Birth Date:</label>
+            <input type="date" id="bdate" required/>
+
+            <label>Gender:</label>
+            <div class="gender-options">
+                <label><input type="radio" name="gender" value="Male" id="genderMale" required /> Male</label>
+                <label><input type="radio" name="gender" value="Female" id="genderFemale" /> Female</label>
+            </div>
+
             <label for="email">Email:</label>
             <input type="email" id="email" required/>
 
             <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" />
+            <input type="tel" id="phone" required/>
 
             <label for="address">Address:</label>
-            <input type="text" id="address" />
+            <input type="text" id="address" required/>
 
             <label for="uname">Username:</label>
             <input type="text" id="uname" required/>
@@ -68,10 +82,18 @@
         if (user) {
             document.getElementById("fname").value = user.fname || "";
             document.getElementById("lname").value = user.lname || "";
+            document.getElementById("mname").value = user.mname || "";
+            document.getElementById("bdate").value = user.bdate || "";
             document.getElementById("email").value = user.email || "";
             document.getElementById("phone").value = user.phone || "";
             document.getElementById("address").value = user.address || "";
             document.getElementById("uname").value = user.uname || "";
+
+            if (user.gender === "Male") {
+                document.getElementById("genderMale").checked = true;
+            } else if (user.gender === "Female") {
+                document.getElementById("genderFemale").checked = true;
+            }
         }
 
         document.getElementById("acctForm").addEventListener("submit", function (event) {
@@ -79,6 +101,14 @@
 
             const password = document.getElementById("password").value;
             const cpassword = document.getElementById("cpassword").value;
+            const genderInput = document.querySelector('input[name="gender"]:checked');
+            const bdate = document.getElementById("bdate").value;
+            const today = new Date().toISOString().split("T")[0];
+
+            if (bdate > today) {
+                alert("Birth date cannot be in the future.");
+                return;
+            }
 
             if (password !== "" && password.length < 8) {
                 alert("New password must be at least 8 characters long.");
@@ -98,11 +128,15 @@
             const updates = {
                 fname: document.getElementById("fname").value.trim(),
                 lname: document.getElementById("lname").value.trim(),
+                mname: document.getElementById("mname").value.trim(),
+                bdate: bdate,
+                gender: genderInput ? genderInput.value : "",
                 email: document.getElementById("email").value.trim(),
                 phone: document.getElementById("phone").value.trim(),
                 address: document.getElementById("address").value.trim(),
                 uname: newUname
             };
+
             if (password !== "") {
                 updates.password = password;
             }

@@ -27,14 +27,24 @@
         </nav>
     </header>
 
-    <div class="admin-wrap">
+    <div class="admin-wrap" style="max-width: 1200px;">
         <h1 style="text-align:left; margin-bottom:20px;">Admin Panel</h1>
 
-        <div class="admin-box">
+        <div class="admin-box" style="overflow-x: auto;">
             <h3>Registered Users</h3>
             <table>
                 <thead>
-                    <tr><th>Name</th><th>Username</th><th>Role</th><th>Department</th><th>Email</th></tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Birth Date</th>
+                        <th>Gender</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                    </tr>
                 </thead>
                 <tbody id="usersBody"></tbody>
             </table>
@@ -51,7 +61,6 @@
         </div>
     </div>
 
-
     <script src="SunSonSolarData.js"></script>
     <script>
         requireRole(["admin"]);
@@ -61,10 +70,23 @@
         let usersHtml = "";
         for (let i = 0; i < accounts.length; i++) {
             const a = accounts[i];
-            usersHtml += "<tr><td>" + a.fname + " " + a.lname + "</td><td>" + a.uname + "</td><td>" +
-                a.role + "</td><td>" + (a.department || "-") + "</td><td>" + (a.email || "-") + "</td></tr>";
+            
+            // Build full name including middle name if present
+            const fullName = (a.fname || "") + " " + (a.mname ? a.mname + " " : "") + (a.lname || "");
+            
+            usersHtml += "<tr>" +
+                "<td>" + fullName.trim() + "</td>" +
+                "<td>" + (a.uname || "-") + "</td>" +
+                "<td>" + (a.bdate || "-") + "</td>" +
+                "<td>" + (a.gender || "-") + "</td>" +
+                "<td>" + (a.role || "-") + "</td>" +
+                "<td>" + (a.department || "-") + "</td>" +
+                "<td>" + (a.email || "-") + "</td>" +
+                "<td>" + (a.phone || "-") + "</td>" +
+                "<td>" + (a.address || "-") + "</td>" +
+                "</tr>";
         }
-        document.getElementById("usersBody").innerHTML = usersHtml;
+        document.getElementById("usersBody").innerHTML = usersHtml || '<tr><td colspan="9">No registered users found.</td></tr>';
 
         const logs = getTimeLogs();
         let logsHtml = "";
