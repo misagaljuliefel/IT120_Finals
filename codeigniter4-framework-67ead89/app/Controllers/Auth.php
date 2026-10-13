@@ -47,19 +47,26 @@ class Auth extends BaseController
             ->first();
 
         if ($employee && password_verify($password, $employee['password'])) {
-           session()->regenerate();
+            session()->regenerate();
 
-           session()->set([
-            'user_id'    => $employee['id'],
-            'username'   => $employee['username'],
-            'role'       => $employee['role'],
-         'isLoggedIn' => true,
-         ]);
+            session()->set([
+                'user_id'    => $employee['id'],
+                'username'   => $employee['username'],
+                'role'       => $employee['role'],
+                'isLoggedIn' => true,
+            ]);
 
-    return redirect()->to(site_url('dashboard'));
-}
+            return redirect()->to(site_url('dashboard'));
+        }
 
         return redirect()->back()
             ->with('error', 'Incorrect username or password.');
+    }
+
+    public function logout()
+    {
+        session()->destroy();
+
+        return redirect()->to(site_url('login'));
     }
 }

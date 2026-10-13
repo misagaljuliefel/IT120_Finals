@@ -17,10 +17,10 @@
                     <button class="dropdown-btn">My Account</button>
                     <div class="dropdown-menu">
                         <a href="<?= site_url('dashboard') ?>">Dashboard</a>
-                        <a href="timein.html">Time In</a>
+                        <a href="<?= site_url('timein') ?>">Time In</a>
                         <a href="account.html">Account Settings</a>
                         <a href="admin.html">Admin Panel</a>
-                        <a href="SunSonSolarLanding.html">Log Out</a>
+                        <a href="<?= site_url('logout') ?>">Log Out</a>
                     </div>
                 </div>
             </div>

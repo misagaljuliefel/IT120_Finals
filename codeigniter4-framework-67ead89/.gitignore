@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+
+/writable/*
+!/writable/.htaccess
+!/writable/index.html
+
+vendor/
