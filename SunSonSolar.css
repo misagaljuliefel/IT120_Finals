@@ -6,7 +6,11 @@
 
 body {
     font-family: Arial, sans-serif;
+<<<<<<< HEAD
     background-image: url("https://www.unboundsolar.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F8mys1eml%2Fproduction%2Fa84607ee0f081efb953f11cfe4b4471969069cf3-1600x703.png%3Fq%3D100%26auto%3Dformat&w=3840&q=75");
+=======
+    background-image: url("SOLARBACKGROUND.jpg");
+>>>>>>> c09b211118bea0634d35248d96fac1975b68608b
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -207,7 +211,11 @@ button:hover {
     text-align: center;
     color: #fff;
 }
+<<<<<<< HEAD
 s
+=======
+
+>>>>>>> c09b211118bea0634d35248d96fac1975b68608b
 .hero-content h1 {
     font-size: 38px;
     color: #ffffff;
@@ -522,6 +530,7 @@ table th {
     font-size: 12px;
     border-radius: 20px;
     text-transform: uppercase;
+<<<<<<< HEAD
 }
 
 .bento-grid {
@@ -1066,4 +1075,6 @@ button:hover { background: #d97706; }
     .quote-form { grid-template-columns: 1fr; }
     .quote-form select, .btn-cta { grid-column: span 1; }
     .hero-content h1 { font-size: 32px; }
+=======
+>>>>>>> c09b211118bea0634d35248d96fac1975b68608b
 }
