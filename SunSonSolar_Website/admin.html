@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sun Son Solar - Admin Panel</title>
+    <link rel="stylesheet" href="SunSonSolar.css" />
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Sun Son <span>Solar</span></div>
+        <nav class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <div id="userMenu">
+                <div class="dropdown">
+                    <button class="dropdown-btn">My Account</button>
+                    <div class="dropdown-menu">
+                        <a href="dashboard.html">Dashboard</a>
+                        <a href="timein.html">Time In</a>
+                        <a href="account.html">Account Settings</a>
+                        <a href="admin.html">Admin Panel</a>
+                        <a href="SunSonSolarLanding.html">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="admin-wrap" style="max-width: 1200px;">
+        <h1 style="text-align:left; margin-bottom:20px;">Admin Panel</h1>
+
+        <div class="admin-box" style="overflow-x: auto;">
+            <h3>Registered Users</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Birth Date</th>
+                        <th>Gender</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody id="usersBody"></tbody>
+            </table>
+        </div>
+
+        <div class="admin-box">
+            <h3>Employee Time-In Log</h3>
+            <table>
+                <thead>
+                    <tr><th>Name</th><th>Time</th><th>Coordinates</th></tr>
+                </thead>
+                <tbody id="logsBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="SunSonSolarData.js"></script>
+    <script>
+        requireRole(["admin"]);
+        wireUserMenu();
+
+        const accounts = getAccounts();
+        let usersHtml = "";
+        for (let i = 0; i < accounts.length; i++) {
+            const a = accounts[i];
+            
+            // Build full name including middle name if present
+            const fullName = (a.fname || "") + " " + (a.mname ? a.mname + " " : "") + (a.lname || "");
+            
+            usersHtml += "<tr>" +
+                "<td>" + fullName.trim() + "</td>" +
+                "<td>" + (a.uname || "-") + "</td>" +
+                "<td>" + (a.bdate || "-") + "</td>" +
+                "<td>" + (a.gender || "-") + "</td>" +
+                "<td>" + (a.role || "-") + "</td>" +
+                "<td>" + (a.department || "-") + "</td>" +
+                "<td>" + (a.email || "-") + "</td>" +
+                "<td>" + (a.phone || "-") + "</td>" +
+                "<td>" + (a.address || "-") + "</td>" +
+                "</tr>";
+        }
+        document.getElementById("usersBody").innerHTML = usersHtml || '<tr><td colspan="9">No registered users found.</td></tr>';
+
+        const logs = getTimeLogs();
+        let logsHtml = "";
+        for (let i = 0; i < logs.length; i++) {
+            const l = logs[i];
+            logsHtml += "<tr><td>" + l.name + "</td><td>" + l.time + "</td><td>" + l.lat + ", " + l.lng + "</td></tr>";
+        }
+        document.getElementById("logsBody").innerHTML = logsHtml || '<tr><td colspan="3">No time-in records yet.</td></tr>';
+    </script>
+</body>
+</html>
