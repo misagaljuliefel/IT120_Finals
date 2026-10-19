@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Reports</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
-</head>
-<body style="display:none">
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('title') ?>Sun Son Solar - Reports<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <main class="page" style="max-width:1200px">
         <h1>Reports</h1>
         <div class="tiles" id="tiles"></div>
@@ -21,9 +16,9 @@
         </div>
         <p><button class="btn-sm btn-ghost" id="csv" style="margin-top:0">Export bookings (CSV)</button></p>
     </main>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
-    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
+<?= $this->section('scripts') ?>
     <script>
         const me = P.init({ roles: ["admin"] });
         if (me) {
@@ -59,5 +54,4 @@
             };
         }
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>

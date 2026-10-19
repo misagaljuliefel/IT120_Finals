@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Products & Services</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
-</head>
-<body style="display:none">
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('title') ?>Sun Son Solar - Products & Services<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <div class="dash-layout">
         <aside class="side-panel">
             <h3>Categories</h3>
@@ -28,9 +23,9 @@
             </div>
         </main>
     </div>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
-    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
+<?= $this->section('scripts') ?>
     <script>
         P.init({ public: true });
 
@@ -106,5 +101,4 @@
 
         drawCats(); renderCatalog(); renderQuoteList();
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>

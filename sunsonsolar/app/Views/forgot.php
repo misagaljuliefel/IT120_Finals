@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Forgot Password</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
-</head>
-<body>
+<?= $this->extend('layouts/public') ?>
+
+<?= $this->section('title') ?>Sun Son Solar - Forgot Password<?= $this->endSection() ?>
+
+<?= $this->section('head') ?>
+<link rel="stylesheet" href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <div class="container">
         <h1>Sun Son Solar</h1>
         <h2>Reset Your Password</h2>
@@ -33,8 +32,10 @@
         <p class="form-note"><a href="<?= base_url('login') ?>">&larr; Back to log in</a></p>
         <p class="form-note"><small>Demo note: once the site has a server, this step should email a reset link instead.</small></p>
     </div>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+<?= $this->section('scripts') ?>
+<script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
     <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         let found = null;
@@ -61,5 +62,4 @@
             window.location.href = "<?= base_url('login') ?>";
         });
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>

@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - My Jobs</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
-</head>
-<body style="display:none">
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('title') ?>Sun Son Solar - My Jobs<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <main class="page" style="max-width:720px">
         <h1>My Jobs</h1>
         <div id="jobs"></div>
     </main>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
-    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
+<?= $this->section('scripts') ?>
     <script>
         const user = P.init({ roles: ["technician"] });
         if (user) {
@@ -33,5 +28,4 @@
             document.getElementById("jobs").innerHTML = html || '<div class="admin-box"><p class="empty">No jobs assigned right now. The office will notify you when one is added.</p></div>';
         }
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>

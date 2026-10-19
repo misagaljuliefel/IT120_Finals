@@ -79,7 +79,7 @@ function requireLogin() {
     var user = getCurrentUser();
     if (!user) {
         var here = window.location.pathname.split("/").pop();
-        window.location.replace("<?= base_url('login') ?>" + (here ? "?next=" + encodeURIComponent(here + window.location.search) : ""));
+        window.location.replace("login" + (here ? "?next=" + encodeURIComponent(here + window.location.search) : ""));
     }
     return user;
 }
@@ -222,12 +222,12 @@ function wireUserMenu() {
         btn.textContent = user.fname;
     }
 
-    var adminLink = menu.querySelector('a[href="<?= base_url('admin') ?>"]');
+    var adminLink = menu.querySelector('a[href="admin"]');
     if (adminLink && user.role !== "admin") {
         adminLink.style.display = "none";
     }
 
-    var logoutLink = menu.querySelector('a[href="<?= base_url('SunSonSolarLanding') ?>"]');
+    var logoutLink = menu.querySelector('a[href="SunSonSolarLanding"]');
     if (logoutLink) {
         logoutLink.addEventListener("click", function () {
             logoutAccount();
@@ -295,35 +295,35 @@ function roleOf(user) {
     return r === "employee" ? "technician" : r;
 }
 
-var ROLE_HOME = { customer: "<?= base_url('customer') ?>", technician: "<?= base_url('technician') ?>", admin: "<?= base_url('admin') ?>" };
+var ROLE_HOME = { customer: "customer", technician: "technician", admin: "admin" };
 
 function homeFor(user) {
-    return ROLE_HOME[roleOf(user)] || "<?= base_url('SunSonSolarLanding') ?>";
+    return ROLE_HOME[roleOf(user)] || "SunSonSolarLanding";
 }
 
 var ROLE_MENU = {
     customer: [
-        ["<?= base_url('customer') ?>", "My Schedule"],
-        ["<?= base_url('schedule') ?>", "Book a Service"],
-        ["<?= base_url('products') ?>", "Products"],
-        ["<?= base_url('history') ?>", "History & Receipts"],
-        ["<?= base_url('support') ?>", "Help & Support"],
-        ["<?= base_url('notifications') ?>", "Notifications"],
-        ["<?= base_url('account') ?>", "Account Settings"]
+        ["customer", "My Schedule"],
+        ["schedule", "Book a Service"],
+        ["products", "Products"],
+        ["history", "History & Receipts"],
+        ["support", "Help & Support"],
+        ["notifications", "Notifications"],
+        ["account", "Account Settings"]
     ],
     technician: [
-        ["<?= base_url('technician') ?>", "Check In"],
-        ["<?= base_url('tech-jobs') ?>", "My Jobs"],
-        ["<?= base_url('tech-announcements') ?>", "Announcements"],
-        ["<?= base_url('tech-report') ?>", "Report a Problem"],
-        ["<?= base_url('notifications') ?>", "Notifications"],
-        ["<?= base_url('account') ?>", "Account Settings"]
+        ["technician", "Check In"],
+        ["tech-jobs", "My Jobs"],
+        ["tech-announcements", "Announcements"],
+        ["tech-report", "Report a Problem"],
+        ["notifications", "Notifications"],
+        ["account", "Account Settings"]
     ],
     admin: [
-        ["<?= base_url('admin') ?>", "Admin Panel"],
-        ["<?= base_url('timein') ?>", "Check In"],
-        ["<?= base_url('notifications') ?>", "Notifications"],
-        ["<?= base_url('account') ?>", "Account Settings"]
+        ["admin", "Admin Panel"],
+        ["timein", "Check In"],
+        ["notifications", "Notifications"],
+        ["account", "Account Settings"]
     ]
 };
 

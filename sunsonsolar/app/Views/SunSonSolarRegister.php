@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Customer Registration</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-</head>
-<body>
+<?= $this->extend('layouts/public') ?>
 
+<?= $this->section('title') ?>Sun Son Solar - Customer Registration<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <header class="navbar">
         <div class="logo" onclick="window.location.href='<?= base_url('SunSonSolarLanding') ?>'">
             Sun Son <span>Solar</span>
@@ -69,8 +64,9 @@
             </small>
         </p>
     </div>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+<?= $this->section('scripts') ?>
+<script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
     <script src="<?= base_url('assets/SunSonSolar.js') ?>"></script>
-</body>
-</html>
+<?= $this->endSection() ?>

@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Help & Support</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
-</head>
-<body style="display:none">
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('title') ?>Sun Son Solar - Help & Support<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <main class="page" style="max-width:860px">
         <h1>Help &amp; Support</h1>
         <p class="lead">Send us a message and we will reply here. For urgent issues, call <span id="phone"></span>.</p>
@@ -27,9 +22,9 @@
         </div>
         <p class="lead"><a href="<?= base_url('SunSonSolarLanding') ?>#help-center" style="color:#fff">Read the FAQ</a></p>
     </main>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
-    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
+<?= $this->section('scripts') ?>
     <script>
         const user = P.init({ roles: ["customer"] });
         if (user) {
@@ -72,5 +67,4 @@
             draw();
         }
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>

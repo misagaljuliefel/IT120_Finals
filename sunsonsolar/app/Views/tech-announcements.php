@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Announcements</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
-</head>
-<body style="display:none">
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('title') ?>Sun Son Solar - Announcements<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <main class="page" style="max-width:720px">
         <h1>Announcements</h1>
         <div class="admin-box" id="list"></div>
     </main>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
-    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
+<?= $this->section('scripts') ?>
     <script>
         const user = P.init({ roles: ["technician"] });
         if (user) {
@@ -24,5 +19,4 @@
             }).join("") : '<p class="empty">No announcements yet.</p>';
         }
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>

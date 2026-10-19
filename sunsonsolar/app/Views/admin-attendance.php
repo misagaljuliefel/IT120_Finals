@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Attendance</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
-</head>
-<body style="display:none">
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('title') ?>Sun Son Solar - Attendance<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <main class="page" style="max-width:1000px">
         <h1>Attendance</h1>
         <div class="admin-box">
@@ -24,9 +19,9 @@
         </div>
         <div class="admin-box"><h3>Not checked in yet</h3><p id="absent"></p></div>
     </main>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
-    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
+<?= $this->section('scripts') ?>
     <script>
         const me = P.init({ roles: ["admin"] });
         if (me) {
@@ -58,5 +53,4 @@
             draw();
         }
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>

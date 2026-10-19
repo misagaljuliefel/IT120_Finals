@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - My Schedule</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
-</head>
-<body style="display:none">
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('title') ?>Sun Son Solar - My Schedule<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <main class="page">
         <h1 id="hello">My Schedule</h1>
         <p class="lead">Your upcoming services. You can reschedule or cancel before a technician arrives.</p>
@@ -24,9 +19,9 @@
             <div id="notes"></div>
         </div>
     </main>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
-    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
+<?= $this->section('scripts') ?>
     <script>
         const user = P.init({ roles: ["customer"] });
         if (user) {
@@ -76,5 +71,4 @@
             draw();
         }
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>

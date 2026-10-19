@@ -122,5 +122,5 @@ form.addEventListener("submit", function (event) {
     }
 
     alert("Account created successfully! You can now log in.");
-    window.location.href = "<?= base_url('login') ?>";
+    window.location.href = "login";
 });

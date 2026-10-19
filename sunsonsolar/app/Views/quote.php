@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Request a Free Quote</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
-</head>
-<body style="display:none">
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('title') ?>Sun Son Solar - Request a Free Quote<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <div class="container wide" id="quoteBox">
         <h1>Sun Son Solar</h1>
         <h2>Request a Free Quote</h2>
@@ -37,9 +32,9 @@
             <button type="submit">Send quote request</button>
         </form>
     </div>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
-    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
+<?= $this->section('scripts') ?>
     <script>
         const user = P.init({ public: true });
         if (user) {
@@ -70,5 +65,4 @@
                 '<p class="muted" style="margin:12px 0">Reference: ' + P.esc(id.toUpperCase()) + '</p><p><a class="btn-link" href="' + (user ? homeFor(user) : "<?= base_url('SunSonSolarLanding') ?>") + '">Back to ' + (user ? "my dashboard" : "home") + "</a></p>";
         });
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>

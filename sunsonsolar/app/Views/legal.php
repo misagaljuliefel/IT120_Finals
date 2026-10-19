@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Privacy & Terms</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
-</head>
-<body style="display:none">
+<?= $this->extend('layouts/main') ?>
+
+<?= $this->section('title') ?>Sun Son Solar - Privacy & Terms<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
     <main class="legal">
         <p><a href="<?= base_url('SunSonSolarLanding') ?>">&larr; Back to home page</a></p>
         <p class="muted">Sample wording for the website. Have it reviewed by a lawyer before launch.</p>
@@ -28,13 +23,12 @@
         <h3>Contact</h3>
         <p id="contact"></p>
     </main>
+<?= $this->endSection() ?>
 
-    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
-    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
+<?= $this->section('scripts') ?>
     <script>
         P.init({ public: true });
         const s = P.settings();
         document.getElementById("contact").textContent = s.company + " | " + s.address + " | " + s.phone + " | " + s.email;
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>
