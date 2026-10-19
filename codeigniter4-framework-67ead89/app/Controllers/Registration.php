@@ -2,11 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Models\CustomerModel;
+
 class Registration extends BaseController
 {
     public function index()
     {
-        return view('registration');
+        return redirect()->to(site_url('registration/client'));
     }
 
     public function client()
@@ -16,121 +18,115 @@ class Registration extends BaseController
 
     public function registerClient()
     {
-        
-        $fname = $this->request->getPost('fname');
-        $lname = $this->request->getPost('lname');
-        $mname = $this->request->getPost('mname');
-        $bdate = $this->request->getPost('bdate');
-        $gender = $this->request->getPost('gender');
-        $phone = $this->request->getPost('phone');
-        $address = $this->request->getPost('address');
-        $email = $this->request->getPost('email');
-        $uname = $this->request->getPost('uname');
-        $password = $this->request->getPost('password');
-        $cpassword = $this->request->getPost('cpassword');
+        $rules = [
+            'fname' => [
+                'label' => 'First name',
+                'rules' => 'required|regex_match[/^[a-zA-Z\s\-]+$/]',
+            ],
+            'lname' => [
+                'label' => 'Last name',
+                'rules' => 'required|regex_match[/^[a-zA-Z\s\-]+$/]',
+            ],
+            'mname' => [
+                'label' => 'Middle name',
+                'rules' => 'permit_empty|regex_match[/^[a-zA-Z\s\-]+$/]',
+            ],
+            'bdate' => [
+                'label' => 'Birthdate',
+                'rules' => 'required|valid_date[Y-m-d]',
+            ],
+            'gender' => [
+                'label' => 'Gender',
+                'rules' => 'required|in_list[Male,Female]',
+            ],
+            'phone' => [
+                'label' => 'Phone number',
+                'rules' => 'required|regex_match[/^09[0-9]{9}$/]',
+            ],
+            'address' => [
+                'label' => 'Address',
+                'rules' => 'required|min_length[5]|max_length[255]',
+            ],
+            'email' => [
+                'label' => 'Email',
+                'rules' => 'required|valid_email|max_length[255]',
+            ],
+            'uname' => [
+                'label' => 'Username',
+                'rules' => 'required|alpha_numeric|min_length[4]|max_length[50]',
+            ],
+            'password' => [
+                'label' => 'Password',
+                'rules' => [
+                    'required',
+                    'min_length[8]',
+                    'regex_match[/[A-Z]/]',
+                    'regex_match[/[a-z]/]',
+                    'regex_match[/[0-9]/]',
+                    'regex_match[/[^a-zA-Z0-9]/]',
+                ],
+            ],
+            'cpassword' => [
+                'label' => 'Confirm password',
+                'rules' => 'required|matches[password]',
+            ],
+        ];
 
-    //First Name
-    if (!preg_match('/^[A-Za-z]+$/', $fname)) {
-        return "Invalid first name";
-    }
+        if (!$this->validate($rules)) {
+            return redirect()->back()
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());
+        }
 
-    // Last Name
-    if (!preg_match('/^[A-Za-z]+$/', $lname)) {
-        return "Invalid last name";
-    }
+        $birthdate = $this->request->getPost('bdate');
 
-    // Middle Name 
-    if ($mname !== "" && !preg_match('/^[A-Za-z]+$/', $mname)) {
-        return "Invalid middle name";
-    }
+        if ($birthdate >= date('Y-m-d')) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Birthdate must be earlier than today.');
+        }
 
-    // Birth Date
-    if ($bdate > date('Y-m-d')) {
-        return "Birth date cannot be in the future";
-    }
+        $username = trim($this->request->getPost('uname'));
+        $email    = trim($this->request->getPost('email'));
 
-    // Phone Number
-    if (!preg_match('/^09[0-9]{9}$/', $phone)) {
-        return "Invalid phone number";
-    }
+        $customers = new CustomerModel();
+        $employees = new \App\Models\EmployeeModel();
 
-    // Email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        return "Invalid email address";
-    }
+        if (
+            $customers->usernameExists($username) ||
+            $employees->where('username', $username)->countAllResults() > 0
+        ) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Username is already taken.');
+        }
 
-    // Username
-    if (preg_match('/\s/', $uname)) {
-        return "Username cannot contain spaces";
-    }
+        if (
+            $customers->emailExists($email) ||
+            $employees->where('email', $email)->countAllResults() > 0
+        ) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Email is already registered.');
+        }
 
-    // Password 
-    if (strlen($password) < 8) {
-        return "Password must be at least 8 characters";
-    }
-
-    if (!preg_match('/[A-Z]/', $password)) {
-        return "Password must contain an uppercase letter";
-    }
-
-    if (!preg_match('/[a-z]/', $password)) {
-        return "Password must contain a lowercase letter";
-    }
-
-    if (!preg_match('/[0-9]/', $password)) {
-        return "Password must contain a number";
-    }
-
-    if (!preg_match('/[^A-Za-z0-9]/', $password)) {
-        return "Password must contain a special character";
-    }
-
-    if ($password !== $cpassword) {
-        return "Passwords do not match";    
-    }
-    
-    $password = password_hash($password, PASSWORD_DEFAULT);
-
-     $db = \Config\Database::connect();
-
-     $sql = "INSERT INTO customers 
-        (first_name, last_name, middle_name, birth_date, gender, email, phone, address, username, password)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    $db->query($sql, [
-      $fname,
-      $lname,
-      $mname,
-      $bdate,
-      $gender,
-      $email,
-      $phone,
-      $address,
-      $uname,
-      $password
-     ]);
-
-     return "Registration saved successfully";
-
-    }
-    public function updateEmployeePassword()
-    {
-        $username = $this->request->getPost('username');
-        $newPassword = $this->request->getPost('password');
-
-        $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-
-        $db = \Config\Database::connect();
-
-        $sql = "UPDATE employees
-                SET password = ?
-                WHERE username = ?";
-
-        $db->query($sql, [
-            $newPassword,
-            $username
+        $customers->insert([
+            'first_name' => trim($this->request->getPost('fname')),
+            'last_name'  => trim($this->request->getPost('lname')),
+            'middle_name'=> trim($this->request->getPost('mname') ?? ''),
+            'birth_date' => $birthdate,
+            'gender'     => $this->request->getPost('gender'),
+            'phone'      => trim($this->request->getPost('phone')),
+            'address'    => trim($this->request->getPost('address')),
+            'email'      => $email,
+            'username'   => $username,
+            'password'   => password_hash(
+                $this->request->getPost('password'),
+                PASSWORD_DEFAULT
+            ),
         ]);
 
-        return view('test_password');
+        return redirect()->to(site_url('login'))
+            ->with('success', 'Registration successful. You may now log in.');
     }
 }

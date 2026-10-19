@@ -12,7 +12,7 @@
         <h1>Sun Son Solar</h1>
         <h2>Create an Account</h2>
 
-        <form method="post" action="/registration/client">
+        <form method="post" action="<?= site_url('registration/client') ?>">
 
         
             <label for="fname">First Name:</label>
@@ -55,7 +55,7 @@
             
         </form>
 
-        <p class="form-note">Already have an account? <a href="login.html">Log in</a></p>
+        <p class="form-note">Already have an account? <a href="<?= site_url('login') ?>">Log in</a></p>
     </div>
     <script src="/assets/SunSonSolar.js"></script>
 

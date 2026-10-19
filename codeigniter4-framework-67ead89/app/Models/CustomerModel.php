@@ -8,8 +8,9 @@ class CustomerModel extends Model
 {
     protected $table            = 'customers';
     protected $primaryKey       = 'id';
-    protected $returnType       = 'array';
     protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
+    protected $protectFields    = true;
 
     protected $allowedFields = [
         'first_name',
@@ -23,4 +24,16 @@ class CustomerModel extends Model
         'username',
         'password',
     ];
+
+    protected $useTimestamps = false;
+
+    public function usernameExists(string $username): bool
+    {
+        return $this->where('username', $username)->countAllResults() > 0;
+    }
+
+    public function emailExists(string $email): bool
+    {
+        return $this->where('email', $email)->countAllResults() > 0;
+    }
 }

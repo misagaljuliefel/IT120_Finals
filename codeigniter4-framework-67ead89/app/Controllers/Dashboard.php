@@ -4,12 +4,13 @@ namespace App\Controllers;
 
 use App\Models\CustomerModel;
 use App\Models\EmployeeModel;
+use App\Models\AttendanceLogModel;
 
 class Dashboard extends BaseController
 {
     public function index()
     {
-        if (!session()->get('isLoggedIn')) {
+        if (! session()->get('isLoggedIn')) {
             return redirect()->to(site_url('login'));
         }
 
@@ -31,7 +32,7 @@ class Dashboard extends BaseController
 
     public function admin()
     {
-        if (!session()->get('isLoggedIn')) {
+        if (! session()->get('isLoggedIn')) {
             return redirect()->to(site_url('login'));
         }
 
@@ -44,11 +45,11 @@ class Dashboard extends BaseController
         $employeeModel = new EmployeeModel();
 
         $customers = $customerModel
-            ->select('first_name, last_name, username, email')
+            ->select('id, first_name, last_name, username, email')
             ->findAll();
 
         $employees = $employeeModel
-            ->select('first_name, last_name, username, role, email, department')
+            ->select('id, first_name, last_name, username, role, email, department, status')
             ->findAll();
 
         $users = [];
@@ -56,6 +57,7 @@ class Dashboard extends BaseController
         foreach ($customers as $customer) {
             $customer['role'] = 'customer';
             $customer['department'] = '-';
+            $customer['status'] = 'active';
             $users[] = $customer;
         }
 
@@ -63,21 +65,22 @@ class Dashboard extends BaseController
             $users[] = $employee;
         }
 
+        $attendanceModel = new AttendanceLogModel();
 
-        $attendanceModel = new \App\Models\AttendanceLogModel();
         $logs = $attendanceModel
-        ->select('employees.first_name, employees.last_name,
-              attendance_logs.time_in,
-              attendance_logs.latitude,
-              attendance_logs.longitude')
-        ->join('employees', 'employees.id = attendance_logs.employee_id')
-        ->orderBy('attendance_logs.time_in', 'DESC')
-        ->findAll();
+            ->select(
+                'employees.first_name, employees.last_name,
+                attendance_logs.time_in,
+                attendance_logs.latitude,
+                attendance_logs.longitude'
+            )
+            ->join('employees', 'employees.id = attendance_logs.employee_id')
+            ->orderBy('attendance_logs.time_in', 'DESC')
+            ->findAll();
 
-          return view('admin', [
-          'users' => $users,
-          'logs'  => $logs,
-]);
-
+        return view('admin', [
+            'users' => $users,
+            'logs'  => $logs,
+        ]);
     }
 }

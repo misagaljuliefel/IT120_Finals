@@ -6,10 +6,11 @@ use CodeIgniter\Model;
 
 class EmployeeModel extends Model
 {
-    protected $table            = 'employees';
-    protected $primaryKey       = 'id';
-    protected $returnType       = 'array';
+    protected $table = 'employees';
+    protected $primaryKey = 'id';
+    protected $returnType = 'array';
     protected $useAutoIncrement = true;
+    protected $protectFields = true;
 
     protected $allowedFields = [
         'first_name',
@@ -22,6 +23,10 @@ class EmployeeModel extends Model
         'address',
         'username',
         'password',
+        'department',
         'role',
+        'status',
     ];
+
+    protected $useTimestamps = false;
 }

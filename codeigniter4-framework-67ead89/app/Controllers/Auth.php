@@ -14,8 +14,8 @@ class Auth extends BaseController
 
     public function login()
     {
-        $username = trim($this->request->getPost('uname') ?? '');
-        $password = $this->request->getPost('password') ?? '';
+        $username = trim((string) $this->request->getPost('uname'));
+        $password = (string) $this->request->getPost('password');
 
         if ($username === '' || $password === '') {
             return redirect()->back()
@@ -25,6 +25,7 @@ class Auth extends BaseController
         $customerModel = new CustomerModel();
         $employeeModel = new EmployeeModel();
 
+        // Check customer account first.
         $customer = $customerModel
             ->where('username', $username)
             ->first();
@@ -42,11 +43,19 @@ class Auth extends BaseController
             return redirect()->to(site_url('dashboard'));
         }
 
+        // Check employee or admin account.
         $employee = $employeeModel
             ->where('username', $username)
             ->first();
 
         if ($employee && password_verify($password, $employee['password'])) {
+
+            // Block inactive employee accounts.
+            if (($employee['status'] ?? 'active') !== 'active') {
+                return redirect()->back()
+                    ->with('error', 'This account is inactive. Please contact the administrator.');
+            }
+
             session()->regenerate();
 
             session()->set([
