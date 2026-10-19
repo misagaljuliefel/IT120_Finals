@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sun Son Solar - Login</title>
+    <link rel="stylesheet" href="SunSonSolar.css" />
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sun Son Solar</h1>
+        <h2 id="loginTitle">Log In</h2>
+
+        <form id="loginForm">
+            <label for="uname">Username:</label>
+            <input type="text" name="uname" id="uname" required autocomplete="username" />
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required autocomplete="current-password" />
+
+            <button type="submit">Log In</button>
+        </form>
+
+        <p class="form-note">
+            <a href="forgot.html">Forgot your password?</a><br />
+            New customer? <a href="SunSonSolarRegister.html">Register here</a><br />
+            <small style="color:#777; display:block; margin-top:8px;">
+                * Employee accounts are created by HR or an administrator.
+            </small>
+        </p>
+        <p class="form-note"><a href="SunSonSolarLanding.html">&larr; Back to home page</a></p>
+    </div>
+
+    <script src="SunSonSolarData.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get("role") === "employee") {
+            document.getElementById("loginTitle").textContent = "Employee Log In";
+        }
+
+        // Already signed in? Go straight to your own home page.
+        const existing = getCurrentUser();
+        if (existing) {
+            window.location.replace(homeFor(existing));
+        }
+
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const uname = document.getElementById("uname").value.trim();
+            const password = document.getElementById("password").value;
+            const result = loginAccount(uname, password);
+
+            if (result === "disabled") {
+                alert("This account has been deactivated. Please contact an administrator.");
+                return;
+            }
+            if (!result) {
+                alert("Incorrect username or password.");
+                return;
+            }
+
+            // Only follow ?next= to a plain page name on this site.
+            const next = params.get("next");
+            const safe = next && /^[A-Za-z0-9_-]+\.html(\?[A-Za-z0-9=&_%.-]*)?$/.test(next);
+            window.location.href = safe ? next : homeFor(getCurrentUser());
+        });
+    </script>
+</body>
+</html>
