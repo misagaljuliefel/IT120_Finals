@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url("SOLARBACKGROUND.jpg");
+    background-image: url("https://www.unboundsolar.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F8mys1eml%2Fproduction%2Fa84607ee0f081efb953f11cfe4b4471969069cf3-1600x703.png%3Fq%3D100%26auto%3Dformat&w=3840&q=75");
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -207,7 +207,7 @@ button:hover {
     text-align: center;
     color: #fff;
 }
-
+s
 .hero-content h1 {
     font-size: 38px;
     color: #ffffff;
@@ -522,10 +522,7 @@ table th {
     font-size: 12px;
     border-radius: 20px;
     text-transform: uppercase;
-
 }
-
-
 
 .bento-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -834,14 +831,15 @@ body {
     border: 1px solid #eee;
 }
 
-.va lue-icon-container {
+```css
+.value-icon-container {
     width: 60px;
     height: 60px;
     margin: 0 auto 15px auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    }
+}
 
 .value-card-img {
     width: 100%;
@@ -1047,16 +1045,14 @@ body {
     color: #666;
 }
 
-
 .container {
     width: 420px;
     background: #ffffff;
-    padding: 30px;
+    padding: 30px;a
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     margin: 40px auto;
 }
-
 
 form { display: flex; flex-direction: column; }
 label { margin-bottom: 5px; font-size: 13px; font-weight: bold; color: #333; }
@@ -1070,96 +1066,4 @@ button:hover { background: #d97706; }
     .quote-form { grid-template-columns: 1fr; }
     .quote-form select, .btn-cta { grid-column: span 1; }
     .hero-content h1 { font-size: 32px; }
-}
-
-
-/* Admin Panel */
-
-.admin-wrap {
-    width: min(1200px, 92%);
-    margin: 40px auto;
-}
-
-.admin-heading {
-    margin-bottom: 28px;
-}
-
-.admin-heading h1 {
-    margin: 0 0 8px;
-    color: #102a43;
-    font-size: 30px;
-}
-
-.admin-heading p {
-    margin: 0;
-    color: #64748b;
-    line-height: 1.6;
-}
-
-.admin-box {
-    margin-bottom: 28px;
-    padding: 24px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-}
-
-.admin-box h2 {
-    margin: 0 0 20px;
-    padding-bottom: 14px;
-    border-bottom: 2px solid #f2c94c;
-    color: #102a43;
-    font-size: 20px;
-}
-
-.table-container {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.admin-box table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-}
-
-.admin-box th,
-.admin-box td {
-    padding: 14px 16px;
-    border-bottom: 1px solid #e2e8f0;
-    white-space: nowrap;
-}
-
-.admin-box th {
-    background: #f8fafc;
-    color: #334155;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.admin-box td {
-    color: #475569;
-    font-size: 14px;
-}
-
-.admin-box tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.admin-box tbody tr:hover {
-    background: #f8fafc;
-}
-
-@media (max-width: 600px) {
-    .admin-wrap {
-        margin: 24px auto;
-    }
-
-    .admin-box {
-        padding: 16px;
-    }
-
-    .admin-heading h1 {
-        font-size: 25px;
-    }
 }
