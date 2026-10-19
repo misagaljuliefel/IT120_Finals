@@ -38,7 +38,7 @@ var P = (function () {
         return ts ? new Date(ts).toLocaleString("en-PH", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "-";
     }
     function peso(n) { return "\u20B1" + Number(n || 0).toLocaleString("en-PH"); }
-    function page() { return window.location.pathname.split("/").pop() || "index.html"; }
+    function page() { return window.location.pathname.split("/").pop() || "<?= base_url('index') ?>"; }
     function fullName(a) { return a ? (a.fname + " " + (a.lname || "")).trim() : ""; }
     function nameOf(uname) { var a = findAccount(uname); return a ? fullName(a) : uname; }
 
@@ -242,13 +242,13 @@ var P = (function () {
 
     /* ---------- page chrome ---------- */
     var ROLE_NAV = {
-        customer: [["customer.html", "My Schedule"], ["schedule.html", "Book a Service"], ["products.html", "Products"], ["quote.html", "Get a Quote"]],
-        technician: [["technician.html", "Check In"], ["tech-jobs.html", "My Jobs"], ["tech-announcements.html", "Announcements"], ["tech-report.html", "Report a Problem"]],
-        admin: [["admin.html", "Admin Panel"], ["timein.html", "Check In"]]
+        customer: [["<?= base_url('customer') ?>", "My Schedule"], ["<?= base_url('schedule') ?>", "Book a Service"], ["<?= base_url('products') ?>", "Products"], ["<?= base_url('quote') ?>", "Get a Quote"]],
+        technician: [["<?= base_url('technician') ?>", "Check In"], ["<?= base_url('tech-jobs') ?>", "My Jobs"], ["<?= base_url('tech-announcements') ?>", "Announcements"], ["<?= base_url('tech-report') ?>", "Report a Problem"]],
+        admin: [["<?= base_url('admin') ?>", "Admin Panel"], ["<?= base_url('timein') ?>", "Check In"]]
     };
     var ADMIN_TABS = [
-        ["admin.html", "Users"], ["admin-calendar.html", "Bookings"], ["admin-quotes.html", "Quotes"], ["admin-inbox.html", "Inbox"],
-        ["admin-attendance.html", "Attendance"], ["admin-reports.html", "Reports"], ["admin-notify.html", "Notifications"], ["admin-settings.html", "Settings"]
+        ["<?= base_url('admin') ?>", "Users"], ["<?= base_url('admin-calendar') ?>", "Bookings"], ["<?= base_url('admin-quotes') ?>", "Quotes"], ["<?= base_url('admin-inbox') ?>", "Inbox"],
+        ["<?= base_url('admin-attendance') ?>", "Attendance"], ["<?= base_url('admin-reports') ?>", "Reports"], ["<?= base_url('admin-notify') ?>", "Notifications"], ["<?= base_url('admin-settings') ?>", "Settings"]
     ];
     function links(arr) {
         return arr.map(function (a) { return '<a href="' + a[0] + '"' + (a[0] === page() ? ' class="current"' : "") + ">" + a[1] + "</a>"; }).join("");
@@ -257,14 +257,14 @@ var P = (function () {
         var n = unread(user.uname);
         return '<header class="navbar"><div class="logo" onclick="location.href=\'' + homeFor(user) + '\'">Sun Son <span>Solar</span></div><nav class="nav-links">' +
             links(ROLE_NAV[role] || []) +
-            '<a href="notifications.html" class="bell" title="Notifications" aria-label="Notifications, ' + n + ' unread">&#128276;' + (n ? '<b class="count">' + n + "</b>" : "") + "</a>" +
+            '<a href="<?= base_url('notifications') ?>" class="bell" title="Notifications" aria-label="Notifications, ' + n + ' unread">&#128276;' + (n ? '<b class="count">' + n + "</b>" : "") + "</a>" +
             '<div class="dropdown"><button type="button" class="dropdown-btn">' + esc(user.fname) + '</button><div class="dropdown-menu">' +
-            links(ROLE_MENU[role] || []) + '<a href="SunSonSolarLanding.html">Home Page</a><a href="#" id="pLogout">Log Out</a></div></div></nav></header>' +
+            links(ROLE_MENU[role] || []) + '<a href="<?= base_url('SunSonSolarLanding') ?>">Home Page</a><a href="#" id="pLogout">Log Out</a></div></div></nav></header>' +
             (role === "admin" ? '<nav class="subnav" aria-label="Admin sections">' + links(ADMIN_TABS) + "</nav>" : "");
     }
     function publicHeader() {
         return '<header class="navbar"><div class="logo" onclick="location.href=\'SunSonSolarLanding.html\'">Sun Son <span>Solar</span></div><nav class="nav-links">' +
-            '<a href="SunSonSolarLanding.html">Home</a><a href="products.html">Products</a><a href="quote.html">Get a Quote</a><a href="login.html">Log In</a></nav></header>';
+            '<a href="<?= base_url('SunSonSolarLanding') ?>">Home</a><a href="<?= base_url('products') ?>">Products</a><a href="<?= base_url('quote') ?>">Get a Quote</a><a href="<?= base_url('login') ?>">Log In</a></nav></header>';
     }
     function show() {
         document.body.style.display = "";
@@ -285,7 +285,7 @@ var P = (function () {
             return null;
         }
         var fresh = findAccount(user.uname);
-        if (!fresh || fresh.active === false) { logoutAccount(); window.location.replace("login.html"); return null; }
+        if (!fresh || fresh.active === false) { logoutAccount(); window.location.replace("<?= base_url('login') ?>"); return null; }
         user = fresh;
         sessionStorage.setItem("ssCurrentUser", JSON.stringify(user));
         var role = roleOf(user);
@@ -298,7 +298,7 @@ var P = (function () {
         document.getElementById("pLogout").onclick = function (e) {
             e.preventDefault();
             logoutAccount();
-            window.location.href = "SunSonSolarLanding.html";
+            window.location.href = "<?= base_url('SunSonSolarLanding') ?>";
         };
         show();
         return user;
