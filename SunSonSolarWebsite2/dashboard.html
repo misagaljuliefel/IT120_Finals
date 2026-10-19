@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sun Son Solar - Dashboard</title>
+</head>
+<body>
+    <!-- Sends each role to its own home page. The product catalog now lives in products.html. -->
+    <p>Loading your dashboard...</p>
+    <script src="SunSonSolarData.js"></script>
+    <script>
+        const user = requireLogin();
+        if (user) {
+            window.location.replace(homeFor(user));
+        }
+    </script>
+</body>
+</html>
