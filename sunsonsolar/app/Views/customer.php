@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - My Schedule</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
-    <link rel="stylesheet" href="SunSonSolarPortal.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
+    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
 </head>
 <body style="display:none">
     <main class="page">
@@ -13,20 +13,20 @@
         <p class="lead">Your upcoming services. You can reschedule or cancel before a technician arrives.</p>
         <div class="tiles" id="tiles"></div>
         <div class="admin-box">
-            <div class="toolbar"><h3 class="grow" style="margin:0">Upcoming services</h3><a class="btn-link" href="schedule.html">Book a service</a></div>
+            <div class="toolbar"><h3 class="grow" style="margin:0">Upcoming services</h3><a class="btn-link" href="<?= base_url('schedule') ?>">Book a service</a></div>
             <div class="tbl-wrap"><table>
                 <thead><tr><th>Service</th><th>Date &amp; time</th><th>Address</th><th>Technician</th><th>Status</th><th>Manage</th></tr></thead>
                 <tbody id="rows"></tbody>
             </table></div>
         </div>
         <div class="admin-box">
-            <div class="toolbar"><h3 class="grow" style="margin:0">Latest notifications</h3><a href="notifications.html">See all</a></div>
+            <div class="toolbar"><h3 class="grow" style="margin:0">Latest notifications</h3><a href="<?= base_url('notifications') ?>">See all</a></div>
             <div id="notes"></div>
         </div>
     </main>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolarPortal.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         const user = P.init({ roles: ["customer"] });
         if (user) {
@@ -39,8 +39,8 @@
                 document.getElementById("tiles").innerHTML =
                     '<div class="tile"><b>' + active.filter(function (b) { return b.status === "approved"; }).length + "</b><span>Confirmed services</span></div>" +
                     '<div class="tile"><b>' + active.filter(function (b) { return b.status === "pending"; }).length + "</b><span>Waiting for approval</span></div>" +
-                    '<a class="tile" href="notifications.html"><b>' + P.unread(user.uname) + "</b><span>Unread notifications</span></a>" +
-                    '<a class="tile" href="support.html"><b>' + openTickets + "</b><span>Open support tickets</span></a>";
+                    '<a class="tile" href="<?= base_url('notifications') ?>"><b>' + P.unread(user.uname) + "</b><span>Unread notifications</span></a>" +
+                    '<a class="tile" href="<?= base_url('support') ?>"><b>' + openTickets + "</b><span>Open support tickets</span></a>";
 
                 document.getElementById("rows").innerHTML = active.length ? active.map(function (b) {
                     return "<tr><td>" + P.esc(b.service) + "</td><td>" + P.fmtDate(b.date) + "<br>" + P.fmtTime(b.time) + "</td><td>" + P.esc(b.address) + "</td><td>" +

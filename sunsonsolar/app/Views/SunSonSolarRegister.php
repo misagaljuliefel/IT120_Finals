@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - Customer Registration</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
 </head>
 <body>
 
     <header class="navbar">
-        <div class="logo" onclick="window.location.href='SunSonSolarLanding.html'">
+        <div class="logo" onclick="window.location.href='<?= base_url('SunSonSolarLanding') ?>'">
             Sun Son <span>Solar</span>
         </div>
         <nav class="nav-links">
-            <a href="SunSonSolarLanding.html">Home</a>
-            <a href="login.html">Log In</a>
+            <a href="<?= base_url('SunSonSolarLanding') ?>">Home</a>
+            <a href="<?= base_url('login') ?>">Log In</a>
         </nav>
     </header>
 
@@ -22,7 +22,7 @@
         <h1>Sun Son Solar</h1>
         <h2>Customer Sign Up</h2>
 
-        <form action="login.html">
+        <form action="<?= base_url('login') ?>">
             <label for="fname">First Name:</label>
             <input type="text" name="fname" id="fname" required/>
 
@@ -63,14 +63,14 @@
         </form>
 
         <p class="form-note">
-            Already have an account? <a href="login.html">Log in here</a><br />
+            Already have an account? <a href="<?= base_url('login') ?>">Log in here</a><br />
             <small style="color:#777; display:block; margin-top:8px;">
                 * Employee accounts are managed internally by HR and Administrators.
             </small>
         </p>
     </div>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolar.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolar.js') ?>"></script>
 </body>
 </html>

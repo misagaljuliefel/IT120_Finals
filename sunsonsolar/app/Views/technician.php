@@ -4,22 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - Technician Home</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
-    <link rel="stylesheet" href="SunSonSolarPortal.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
+    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
 </head>
 <body style="display:none">
     <main class="page" style="max-width:680px">
         <h1 id="hello">Hello</h1>
         <div class="admin-box"><div id="checkin"></div></div>
         <div class="big-tiles">
-            <a class="big-tile" href="tech-jobs.html">My Jobs<small id="jobsInfo"></small></a>
-            <a class="big-tile" href="tech-announcements.html">Announcements<small id="annInfo"></small></a>
-            <a class="big-tile" href="tech-report.html">Report a Problem<small>Tell the office about an issue</small></a>
+            <a class="big-tile" href="<?= base_url('tech-jobs') ?>">My Jobs<small id="jobsInfo"></small></a>
+            <a class="big-tile" href="<?= base_url('tech-announcements') ?>">Announcements<small id="annInfo"></small></a>
+            <a class="big-tile" href="<?= base_url('tech-report') ?>">Report a Problem<small>Tell the office about an issue</small></a>
         </div>
     </main>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolarPortal.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         const user = P.init({ roles: ["technician"] });
         if (user) {

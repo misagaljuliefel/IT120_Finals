@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - Report a Problem</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
-    <link rel="stylesheet" href="SunSonSolarPortal.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
+    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
 </head>
 <body style="display:none">
     <main class="page" style="max-width:640px">
@@ -24,8 +24,8 @@
         <div class="admin-box"><h3>My reports</h3><div id="mine"></div></div>
     </main>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolarPortal.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         const user = P.init({ roles: ["technician"] });
         if (user) {

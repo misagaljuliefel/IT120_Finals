@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - Account Settings</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
-    <link rel="stylesheet" href="SunSonSolarPortal.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
+    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
 </head>
 <body style="display:none">
     <div class="container wide">
@@ -54,8 +54,8 @@
         <p class="form-note"><a href="#" id="back">&larr; Back</a></p>
     </div>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolarPortal.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         const user = P.init({});
         if (user) {

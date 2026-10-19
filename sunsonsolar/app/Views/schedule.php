@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - Schedule a Service</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
-    <link rel="stylesheet" href="SunSonSolarPortal.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
+    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
 </head>
 <body style="display:none">
     <div class="container wide">
@@ -31,8 +31,8 @@
         <p class="form-note">We will confirm your schedule after review. You can reschedule or cancel from your dashboard.</p>
     </div>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolarPortal.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         const user = P.init({ roles: ["customer"] });
         if (user) {
@@ -84,7 +84,7 @@
                 P.saveBookings(bookings);
                 if (P.settings().notify.newBooking) P.notifyRole("admin", "New booking request", P.fullName(user) + " requested " + s.name + " on " + P.fmtDate(date.value) + ".");
                 sessionStorage.setItem("ssFlash", "Request sent. We will confirm your schedule soon.");
-                window.location.href = "customer.html";
+                window.location.href = "<?= base_url('customer') ?>";
             });
         }
     </script>

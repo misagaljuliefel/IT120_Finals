@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - Products & Services</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
-    <link rel="stylesheet" href="SunSonSolarPortal.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
+    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
 </head>
 <body style="display:none">
     <div class="dash-layout">
@@ -24,13 +24,13 @@
             <div class="quote-section">
                 <h3>My Quote List</h3>
                 <div id="quoteList"></div>
-                <p style="margin-top:14px"><a class="btn-link" href="quote.html">Request a free quote</a></p>
+                <p style="margin-top:14px"><a class="btn-link" href="<?= base_url('quote') ?>">Request a free quote</a></p>
             </div>
         </main>
     </div>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolarPortal.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         P.init({ public: true });
 
@@ -66,7 +66,7 @@
                     "<p>" + P.esc(i.desc) + "</p>" +
                     '<button class="read-more-btn" data-add="' + P.esc(i.id) + '" style="border:none;cursor:pointer;width:100%;' + (inCart ? "background:#ccc;" : "") + '">' +
                     (inCart ? "Added to quote" : "Add to quote") + "</button>" +
-                    (i.type === "service" ? '<a class="read-more-btn" style="margin-top:8px;width:100%;text-align:center" href="schedule.html?service=' + encodeURIComponent(i.id) + '">Book this service</a>' : "") +
+                    (i.type === "service" ? '<a class="read-more-btn" style="margin-top:8px;width:100%;text-align:center" href="<?= base_url('schedule') ?>?service=' + encodeURIComponent(i.id) + '">Book this service</a>' : "") +
                     "</div></div>";
             });
             document.getElementById("catalogGrid").innerHTML = html || '<p class="empty" style="grid-column:1/-1;color:#fff">No items match your search.</p>';

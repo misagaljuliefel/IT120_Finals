@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - Privacy & Terms</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
-    <link rel="stylesheet" href="SunSonSolarPortal.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
+    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
 </head>
 <body style="display:none">
     <main class="legal">
-        <p><a href="SunSonSolarLanding.html">&larr; Back to home page</a></p>
+        <p><a href="<?= base_url('SunSonSolarLanding') ?>">&larr; Back to home page</a></p>
         <p class="muted">Sample wording for the website. Have it reviewed by a lawyer before launch.</p>
         <h2 id="privacy">Privacy Policy</h2>
         <h3>What we collect</h3>
@@ -29,8 +29,8 @@
         <p id="contact"></p>
     </main>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolarPortal.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         P.init({ public: true });
         const s = P.settings();

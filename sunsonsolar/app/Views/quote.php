@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - Request a Free Quote</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
-    <link rel="stylesheet" href="SunSonSolarPortal.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
+    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
 </head>
 <body style="display:none">
     <div class="container wide" id="quoteBox">
@@ -38,8 +38,8 @@
         </form>
     </div>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolarPortal.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         const user = P.init({ public: true });
         if (user) {
@@ -67,7 +67,7 @@
             P.set("ssQuotes", all);
             clearQuoteList();
             document.getElementById("quoteBox").innerHTML = '<h2 style="margin-bottom:10px">Thank you!</h2><p>We received your request and will contact you within one business day.</p>' +
-                '<p class="muted" style="margin:12px 0">Reference: ' + P.esc(id.toUpperCase()) + '</p><p><a class="btn-link" href="' + (user ? homeFor(user) : "SunSonSolarLanding.html") + '">Back to ' + (user ? "my dashboard" : "home") + "</a></p>";
+                '<p class="muted" style="margin:12px 0">Reference: ' + P.esc(id.toUpperCase()) + '</p><p><a class="btn-link" href="' + (user ? homeFor(user) : "<?= base_url('SunSonSolarLanding') ?>") + '">Back to ' + (user ? "my dashboard" : "home") + "</a></p>";
         });
     </script>
 </body>

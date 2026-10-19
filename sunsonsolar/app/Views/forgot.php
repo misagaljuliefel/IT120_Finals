@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - Forgot Password</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
-    <link rel="stylesheet" href="SunSonSolarPortal.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
+    <link rel="stylesheet"    href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
 </head>
 <body>
     <div class="container">
@@ -30,12 +30,12 @@
             <button type="submit">Save new password</button>
         </form>
 
-        <p class="form-note"><a href="login.html">&larr; Back to log in</a></p>
+        <p class="form-note"><a href="<?= base_url('login') ?>">&larr; Back to log in</a></p>
         <p class="form-note"><small>Demo note: once the site has a server, this step should email a reset link instead.</small></p>
     </div>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolarPortal.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         let found = null;
         document.getElementById("findForm").addEventListener("submit", function (e) {
@@ -58,7 +58,7 @@
             updateAccount(found.uname, { password: p });
             if (!wasLoggedIn) sessionStorage.removeItem("ssCurrentUser");
             alert("Password updated. You can now log in.");
-            window.location.href = "login.html";
+            window.location.href = "<?= base_url('login') ?>";
         });
     </script>
 </body>

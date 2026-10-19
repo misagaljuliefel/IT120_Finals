@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sun Son Solar - Power Your Future</title>
-    <link rel="stylesheet" href="SunSonSolar.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
 </head>
 <body>
 
     <header class="navbar">
-        <div class="logo" onclick="window.location.href='SunSonSolarLanding.html'">
+        <div class="logo" onclick="window.location.href='<?= base_url('SunSonSolarLanding') ?>'">
             Sun Son <span>Solar</span>
         </div>
 
@@ -25,9 +25,9 @@
             <div class="login-dropdown" id="navAuthArea">
                 <button class="login-btn">Log In / Account</button>
                 <div class="dropdown-content">
-                    <a href="login.html">Customer Login</a>
-                    <a href="login.html?role=employee">Employee Access</a>
-                    <a href="SunSonSolarRegister.html">Customer Sign Up</a>
+                    <a href="<?= base_url('login') ?>">Customer Login</a>
+                    <a href="<?= base_url('login') ?>?role=employee">Employee Access</a>
+                    <a href="<?= base_url('SunSonSolarRegister') ?>">Customer Sign Up</a>
                 </div>
             </div>
         </nav>
@@ -39,8 +39,8 @@
             <h1>Power Your Future with Solar</h1>
             <p>To illuminate a sustainable future by merging clean energy with intelligent design. Take control of your electricity bills and enjoy true energy independence.</p>
             <div class="hero-actions">
-                <a href="schedule.html" class="btn-primary">Schedule a Service</a>
-                <a href="quote.html" class="btn-secondary">Request a Free Quote</a>
+                <a href="<?= base_url('schedule') ?>" class="btn-primary">Schedule a Service</a>
+                <a href="<?= base_url('quote') ?>" class="btn-secondary">Request a Free Quote</a>
             </div>
         </div>
     </section>
@@ -114,7 +114,7 @@
                     <span class="card-badge">Solar Generation</span>
                     <h4>Solar Panels</h4>
                     <p>High-efficiency monocrystalline solar panels built for long durability.</p>
-                    <a href="products.html?cat=Panels" class="read-more-btn">Explore Panels</a>
+                    <a href="<?= base_url('products') ?>?cat=Panels" class="read-more-btn">Explore Panels</a>
                 </div>
             </div>
 
@@ -126,7 +126,7 @@
                     <span class="card-badge">Power Conversion</span>
                     <h4>Inverters</h4>
                     <p>Advanced power inverters for reliable off-grid and hybrid energy conversion.</p>
-                    <a href="products.html?cat=Inverters" class="read-more-btn">Explore Inverters</a>
+                    <a href="<?= base_url('products') ?>?cat=Inverters" class="read-more-btn">Explore Inverters</a>
                 </div>
             </div>
 
@@ -138,7 +138,7 @@
                     <span class="card-badge">Energy Storage</span>
                     <h4>Batteries</h4>
                     <p>Long-lasting energy storage units to keep your setup powered 24/7.</p>
-                    <a href="products.html?cat=Batteries" class="read-more-btn">Explore Storage</a>
+                    <a href="<?= base_url('products') ?>?cat=Batteries" class="read-more-btn">Explore Storage</a>
                 </div>
             </div>
 
@@ -150,7 +150,7 @@
                     <span class="card-badge">Hardware</span>
                     <h4>Racking & Mounting</h4>
                     <p>Heavy-duty structural mounting systems for rooftops and ground setups.</p>
-                    <a href="products.html?cat=Racking %26 Mounting" class="read-more-btn">Explore Mounts</a>
+                    <a href="<?= base_url('products') ?>?cat=Racking %26 Mounting" class="read-more-btn">Explore Mounts</a>
                 </div>
             </div>
             <div class="product-card">
@@ -161,11 +161,11 @@
                     <span class="card-badge">Wiring & Cabling</span>
                     <h4>Solar Wires & Cabling</h4>
                     <p>Weatherproof, high-conductivity wiring and solar PV connectors.</p>
-                    <a href="products.html?cat=Wires" class="read-more-btn">Explore Wires</a>
+                    <a href="<?= base_url('products') ?>?cat=Wires" class="read-more-btn">Explore Wires</a>
                 </div>
             </div>
         </div>
-        <p style="text-align:center;margin-top:26px"><a href="products.html" class="btn-primary">Browse the Full Catalog</a></p>
+        <p style="text-align:center;margin-top:26px"><a href="<?= base_url('products') ?>" class="btn-primary">Browse the Full Catalog</a></p>
     </section>
 
 
@@ -183,7 +183,7 @@
                     <span class="card-badge">Step 1</span>
                     <h4>Consultation</h4>
                     <p>Professional site evaluation, shade testing, and custom energy cost analysis.</p>
-                    <a href="schedule.html?cat=Consultation" class="read-more-btn">Book Consultation</a>
+                    <a href="<?= base_url('schedule') ?>?cat=Consultation" class="read-more-btn">Book Consultation</a>
                 </div>
             </div>
 
@@ -195,7 +195,7 @@
                     <span class="card-badge">Step 2</span>
                     <h4>Designing</h4>
                     <p>Custom CAD engineering layouts optimized specifically for your roof shape and power consumption.</p>
-                    <a href="schedule.html?cat=Designing" class="read-more-btn">View Designs</a>
+                    <a href="<?= base_url('schedule') ?>?cat=Designing" class="read-more-btn">View Designs</a>
                 </div>
             </div>
 
@@ -207,7 +207,7 @@
                     <span class="card-badge">Step 3</span>
                     <h4>Installations</h4>
                     <p>Turn-key certified solar panel array mounting, wiring, safety grounding, and testing.</p>
-                    <a href="schedule.html?cat=Installation" class="read-more-btn">Schedule Setup</a>
+                    <a href="<?= base_url('schedule') ?>?cat=Installation" class="read-more-btn">Schedule Setup</a>
                 </div>
             </div>
 
@@ -219,7 +219,7 @@
                     <span class="card-badge">Ongoing Care</span>
                     <h4>Maintenance & Repair</h4>
                     <p>System health checks, panel washing, battery diagnostics, and fast inverter servicing.</p>
-                    <a href="schedule.html?cat=Maintenance" class="read-more-btn">Request Support</a>
+                    <a href="<?= base_url('schedule') ?>?cat=Maintenance" class="read-more-btn">Request Support</a>
                 </div>
             </div>
             <div class="product-card">
@@ -230,7 +230,7 @@
                     <span class="card-badge">Fast Service</span>
                     <h4>Repair</h4>
                     <p>Fast component diagnosis, battery swaps, and emergency inverter repairs.</p>
-                    <a href="schedule.html?cat=Repair" class="read-more-btn">Fix Issue</a>
+                    <a href="<?= base_url('schedule') ?>?cat=Repair" class="read-more-btn">Fix Issue</a>
                 </div>
             </div>
 
@@ -242,7 +242,7 @@
                     <span class="card-badge">24/7 Support</span>
                     <h4>Monitoring</h4>
                     <p>24/7 remote performance tracking and real-time alerts for peak power output.</p>
-                    <a href="schedule.html?cat=Monitoring" class="read-more-btn">Track Output</a>
+                    <a href="<?= base_url('schedule') ?>?cat=Monitoring" class="read-more-btn">Track Output</a>
                 </div>
             </div>
         </div>
@@ -360,15 +360,15 @@
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="schedule.html">Schedule a Service</a></li>
-                    <li><a href="quote.html">Free Quote</a></li>
-                    <li><a href="login.html">Customer Portal</a></li>
-                    <li><a href="login.html?role=employee">Employee Portal</a></li>
+                    <li><a href="<?= base_url('schedule') ?>">Schedule a Service</a></li>
+                    <li><a href="<?= base_url('quote') ?>">Free Quote</a></li>
+                    <li><a href="<?= base_url('login') ?>">Customer Portal</a></li>
+                    <li><a href="<?= base_url('login') ?>?role=employee">Employee Portal</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h5>Legal & Socials</h5>
-                <p><a href="legal.html#privacy">Privacy Policy</a> | <a href="legal.html#terms">Terms of Service</a></p>
+                <p><a href="<?= base_url('legal') ?>#privacy">Privacy Policy</a> | <a href="<?= base_url('legal') ?>#terms">Terms of Service</a></p>
                 <div class="social-links">
                     <a href="#">Facebook</a> • <a href="#">LinkedIn</a> • <a href="#">Instagram</a>
                 </div>
@@ -379,8 +379,8 @@
         </div>
     </footer>
 
-    <script src="SunSonSolarData.js"></script>
-    <script src="SunSonSolarPortal.js"></script>
+    <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
+    <script src="<?= base_url('assets/SunSonSolarPortal.js') ?>"></script>
     <script>
         wireLandingAuthArea();
 
