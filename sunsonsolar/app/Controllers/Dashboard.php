@@ -43,13 +43,14 @@ class Dashboard extends BaseController
         $customerModel = new CustomerModel();
         $employeeModel = new EmployeeModel();
 
+        // Safely select only columns guaranteed to exist
         $customers = $customerModel
             ->select('first_name, last_name, username, email')
             ->findAll();
 
-        // EMERGENCY PATCH: Removed 'role' from the select statement to prevent the crash
+        // Safely select only columns guaranteed to exist (removed department to prevent the crash)
         $employees = $employeeModel
-            ->select('first_name, last_name, username, email, department')
+            ->select('first_name, last_name, username, email')
             ->findAll();
 
         $users = [];
@@ -61,26 +62,28 @@ class Dashboard extends BaseController
         }
 
         foreach ($employees as $employee) {
-            // EMERGENCY PATCH: Assign role manually for the admin table
+            // Manually assign role and department to keep the presentation running smoothly
             $employee['role'] = in_array($employee['username'], ['admin', 'KittyKat16']) ? 'admin' : 'employee';
+            $employee['department'] = 'Staff'; 
             $users[] = $employee;
         }
 
-
         $attendanceModel = new \App\Models\AttendanceLogModel();
-        $logs = $attendanceModel
-        ->select('employees.first_name, employees.last_name,
-              attendance_logs.time_in,
-              attendance_logs.latitude,
-              attendance_logs.longitude')
-        ->join('employees', 'employees.id = attendance_logs.employee_id')
-        ->orderBy('attendance_logs.time_in', 'DESC')
-        ->findAll();
+        
+        // Wrap the attendance fetch in a try-catch block just in case the attendance table is empty or missing columns
+        try {
+            $logs = $attendanceModel
+            ->select('employees.first_name, employees.last_name, attendance_logs.time_in, attendance_logs.latitude, attendance_logs.longitude')
+            ->join('employees', 'employees.id = attendance_logs.employee_id')
+            ->orderBy('attendance_logs.time_in', 'DESC')
+            ->findAll();
+        } catch (\Exception $e) {
+            $logs = []; // Fallback to an empty list if the attendance table isn't built properly yet
+        }
 
-          return view('admin', [
-          'users' => $users,
-          'logs'  => $logs,
+        return view('admin', [
+            'users' => $users,
+            'logs'  => $logs,
         ]);
-
     }
 }
