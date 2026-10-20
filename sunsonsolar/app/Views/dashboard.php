@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Dashboard</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-</head>
-<body>
+<?= $this->extend('layouts/main') ?>
 
-    <header class="navbar">
-        <div class="logo">Sun Son <span>Solar</span></div>
-        <nav class="nav-links">
-            <a href="<?= site_url('/') ?>">Home</a>
-            <div id="userMenu">
-                <div class="dropdown">
-                    <button class="dropdown-btn">My Account</button>
-                    <div class="dropdown-menu">
-                        <a href="<?= site_url('dashboard') ?>">Dashboard</a>
-                        <a href="<?= site_url('timein') ?>">Time In</a>
-                        <a href="account.html">Account Settings</a>
-                        <a href="admin.html">Admin Panel</a>
-                        <a href="<?= site_url('logout') ?>">Log Out</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
+<?= $this->section('content') ?>
     <div class="dash-layout">
         <aside class="side-panel">
             <h3>Categories</h3>
@@ -169,5 +143,4 @@
         renderCatalog();
         renderQuoteList();
     </script>
-</body>
-</html>
+<?= $this->endSection() ?>

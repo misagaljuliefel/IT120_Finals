@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sun Son Solar - Login</title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
-</head>
-<body>
+<?= $this->extend('layouts/public') ?>
 
+<?= $this->section('content') ?>
     <div class="container">
         <h1>Sun Son Solar</h1>
         
@@ -25,8 +18,6 @@
         </p>
         <?php endif; ?>
 
-
-        
      <form id="loginForm" action="<?= site_url('login') ?>" method="post">
      <?= csrf_field() ?>
 
@@ -44,7 +35,4 @@
         <a href="<?= site_url('registration/client') ?>">Register here</a>
         </p>
     </div>  
-
-    
-</body>
-</html>
+<?= $this->endSection() ?>
