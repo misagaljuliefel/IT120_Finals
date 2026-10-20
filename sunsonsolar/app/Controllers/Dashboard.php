@@ -47,8 +47,9 @@ class Dashboard extends BaseController
             ->select('first_name, last_name, username, email')
             ->findAll();
 
+        // EMERGENCY PATCH: Removed 'role' from the select statement to prevent the crash
         $employees = $employeeModel
-            ->select('first_name, last_name, username, role, email, department')
+            ->select('first_name, last_name, username, email, department')
             ->findAll();
 
         $users = [];
@@ -60,6 +61,8 @@ class Dashboard extends BaseController
         }
 
         foreach ($employees as $employee) {
+            // EMERGENCY PATCH: Assign role manually for the admin table
+            $employee['role'] = in_array($employee['username'], ['admin', 'KittyKat16']) ? 'admin' : 'employee';
             $users[] = $employee;
         }
 
@@ -77,7 +80,7 @@ class Dashboard extends BaseController
           return view('admin', [
           'users' => $users,
           'logs'  => $logs,
-]);
+        ]);
 
     }
 }
