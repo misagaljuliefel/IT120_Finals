@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/SunSonSolarPortal.css') ?>" />
 </head>
-<body style="display:none">
+<body>
     <?= $this->renderSection('content') ?>
 
     <script src="<?= base_url('assets/SunSonSolarData.js') ?>"></script>
