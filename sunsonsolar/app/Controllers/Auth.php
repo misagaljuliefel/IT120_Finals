@@ -52,7 +52,8 @@ class Auth extends BaseController
             session()->set([
                 'user_id'    => $employee['id'],
                 'username'   => $employee['username'],
-                'role'       => $employee['role'],
+                // EMERGENCY PATCH: Safely assign admin role to Sol and Kat if the database column is missing
+                'role'       => $employee['role'] ?? (in_array($employee['username'], ['admin', 'KittyKat16']) ? 'admin' : 'employee'),
                 'isLoggedIn' => true,
             ]);
 
