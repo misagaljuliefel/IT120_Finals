@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?= $this->renderSection('title') ?></title>
-    <link rel="stylesheet" href="<?= base_url('assets/SunSonSolar.css') ?>" />
+    <!-- Hardcoded absolute path to bypass CodeIgniter URL config issues -->
+    <link rel="stylesheet" href="/assets/SunSonSolar.css" />
     <?= $this->renderSection('head') ?>
 </head>
 <body>
